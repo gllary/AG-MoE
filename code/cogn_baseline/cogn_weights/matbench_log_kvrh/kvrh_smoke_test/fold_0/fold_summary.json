@@ -1,0 +1,11 @@
+{
+  "fold": 0,
+  "test_mae": 0.05394522100687027,
+  "best_epoch": 121,
+  "best_val_mae": 0.13666513562202454,
+  "n_train": 7910,
+  "n_val": 879,
+  "n_test": 2198,
+  "steps_per_epoch": 124,
+  "elapsed_min": 56.296133550008136
+}

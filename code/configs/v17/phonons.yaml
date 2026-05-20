@@ -1,0 +1,42 @@
+# configs/v17/phonons.yaml
+# Stage1 single-expert pretraining (v17)
+# Task: matbench_phonons
+
+mode: structure
+data_file: matbench_phonons.pt
+
+# -------------------------
+# Training control
+# -------------------------
+epochs: 1200              # phonons 收敛慢，给足上限
+batch_size: 8             # ⭐ v17 + AMP 下的甜点 batch
+patience: 250
+
+# -------------------------
+# Optimizer
+# -------------------------
+lr: 0.00010               # phonons 对 lr 非常敏感，宁小不大
+weight_decay: 0.002
+loss: huber               # ⭐ phonons 必须用 huber（社区共识）
+
+# -------------------------
+# Model size
+# -------------------------
+embed_dim: 512             # 与 stage2 / MoE 对齐
+dropout: 0.20              # ⭐ phonons 噪声大，dropout 要明显
+depth: 3                   # 保留字段（兼容）
+
+# -------------------------
+# Structure encoder (v17)
+# -------------------------
+struct_config:
+  conv_layers: 3           # CGCNN backbone：3 是最优点
+  graphormer_layers: 3     # ⭐ phonons 比 jdft2d 更依赖长程
+  node_dim: 128
+  num_heads: 4
+  ff_hidden: 256
+
+# -------------------------
+# AMP / acceleration
+# -------------------------
+use_amp: true

@@ -1,0 +1,23 @@
+mode: structure
+data_file: matbench_mp_is_metal.pt
+
+epochs: 400
+batch_size: 16
+patience: 80
+
+lr: 0.00015
+weight_decay: 0.001
+loss: bce
+dropout: 0.1
+use_amp: true
+
+embed_dim: 512
+
+struct_config:
+  conv_layers: 3
+  graphormer_layers: 1   # ⭐ 关键提速点
+  node_dim: 128
+  num_heads: 4
+  ff_hidden: 256
+
+depth: 2

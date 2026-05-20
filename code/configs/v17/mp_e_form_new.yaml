@@ -1,0 +1,20 @@
+# configs/v16/mp_e_form_fast.yaml
+mode: structure
+
+epochs: 600
+batch_size: 16        # ⭐ 直接翻倍
+patience: 150
+
+lr: 0.0002            # CGCNN 可用更大学习率
+weight_decay: 0.001
+dropout: 0.05
+loss: huber
+
+embed_dim: 512        # ⭐ 不要大
+
+struct_config:
+  conv_layers: 5      # ⭐ 核心
+  graphormer_layers: 0   # ❗ 关键：彻底关掉
+  node_dim: 128
+  num_heads: 0        # 无效但留着不报错
+  ff_hidden: 256

@@ -1,0 +1,66 @@
+task,task_label,group,metric,unit,higher_is_better,method,mean,std
+steels,Steel Yield Strength,Composition-based tasks,MAE,MPa,False,No-sharing,73.8809,15.4175
+steels,Steel Yield Strength,Composition-based tasks,MAE,MPa,False,Fully joint,69.8233,25.9167
+steels,Steel Yield Strength,Composition-based tasks,MAE,MPa,False,Pure MoE,69.8252,23.5607
+steels,Steel Yield Strength,Composition-based tasks,MAE,MPa,False,Per-task gate,69.7682,12.2045
+steels,Steel Yield Strength,Composition-based tasks,MAE,MPa,False,AG-MoE,69.7549,11.9604
+expt_gap,Exp. Band Gap,Composition-based tasks,MAE,eV,False,No-sharing,0.4245,0.0111
+expt_gap,Exp. Band Gap,Composition-based tasks,MAE,eV,False,Fully joint,0.2482,0.0186
+expt_gap,Exp. Band Gap,Composition-based tasks,MAE,eV,False,Pure MoE,0.2483,0.0169
+expt_gap,Exp. Band Gap,Composition-based tasks,MAE,eV,False,Per-task gate,0.2475,0.0088
+expt_gap,Exp. Band Gap,Composition-based tasks,MAE,eV,False,AG-MoE,0.248,0.0086
+glass,Glass Forming Ability,Composition-based tasks,AUC,,True,No-sharing,0.9296,0.0037
+glass,Glass Forming Ability,Composition-based tasks,AUC,,True,Fully joint,0.9722,0.0063
+glass,Glass Forming Ability,Composition-based tasks,AUC,,True,Pure MoE,0.9768,0.0057
+glass,Glass Forming Ability,Composition-based tasks,AUC,,True,Per-task gate,0.9768,0.003
+glass,Glass Forming Ability,Composition-based tasks,AUC,,True,AG-MoE,0.9768,0.0029
+expt_is_metal,Exp. Metallicity,Composition-based tasks,AUC,,True,No-sharing,0.9463,0.0039
+expt_is_metal,Exp. Metallicity,Composition-based tasks,AUC,,True,Fully joint,0.9673,0.0065
+expt_is_metal,Exp. Metallicity,Composition-based tasks,AUC,,True,Pure MoE,0.9741,0.0059
+expt_is_metal,Exp. Metallicity,Composition-based tasks,AUC,,True,Per-task gate,0.9741,0.0031
+expt_is_metal,Exp. Metallicity,Composition-based tasks,AUC,,True,AG-MoE,0.9741,0.003
+phonons,Phonon Peak Freq.,Structure-based tasks,MAE,cm$^{-1}$,False,No-sharing,30.6806,3.4554
+phonons,Phonon Peak Freq.,Structure-based tasks,MAE,cm$^{-1}$,False,Fully joint,28.8963,5.8085
+phonons,Phonon Peak Freq.,Structure-based tasks,MAE,cm$^{-1}$,False,Pure MoE,28.5117,5.2805
+phonons,Phonon Peak Freq.,Structure-based tasks,MAE,cm$^{-1}$,False,Per-task gate,29.4037,2.7353
+phonons,Phonon Peak Freq.,Structure-based tasks,MAE,cm$^{-1}$,False,AG-MoE,26.3261,2.6806
+mp_gap,MP Band Gap,Structure-based tasks,MAE,eV,False,No-sharing,0.2386,0.0032
+mp_gap,MP Band Gap,Structure-based tasks,MAE,eV,False,Fully joint,0.1977,0.0054
+mp_gap,MP Band Gap,Structure-based tasks,MAE,eV,False,Pure MoE,0.1221,0.0049
+mp_gap,MP Band Gap,Structure-based tasks,MAE,eV,False,Per-task gate,0.2586,0.0026
+mp_gap,MP Band Gap,Structure-based tasks,MAE,eV,False,AG-MoE,0.1244,0.0025
+mp_e_form,MP Formation E,Structure-based tasks,MAE,eV/atom,False,No-sharing,0.0298,0.0004
+mp_e_form,MP Formation E,Structure-based tasks,MAE,eV/atom,False,Fully joint,0.0782,0.0007
+mp_e_form,MP Formation E,Structure-based tasks,MAE,eV/atom,False,Pure MoE,0.2199,0.0006
+mp_e_form,MP Formation E,Structure-based tasks,MAE,eV/atom,False,Per-task gate,0.01638,0.0003
+mp_e_form,MP Formation E,Structure-based tasks,MAE,eV/atom,False,AG-MoE,0.016,0.0003
+log_kvrh,Bulk Modulus (log K),Structure-based tasks,MAE,log$_{10}$ GPa,False,No-sharing,0.0572,0.003
+log_kvrh,Bulk Modulus (log K),Structure-based tasks,MAE,log$_{10}$ GPa,False,Fully joint,0.0673,0.005
+log_kvrh,Bulk Modulus (log K),Structure-based tasks,MAE,log$_{10}$ GPa,False,Pure MoE,0.1223,0.0045
+log_kvrh,Bulk Modulus (log K),Structure-based tasks,MAE,log$_{10}$ GPa,False,Per-task gate,0.0395,0.0023
+log_kvrh,Bulk Modulus (log K),Structure-based tasks,MAE,log$_{10}$ GPa,False,AG-MoE,0.0391,0.0023
+log_gvrh,Shear Modulus (log G),Structure-based tasks,MAE,log$_{10}$ GPa,False,No-sharing,0.079,0.0009
+log_gvrh,Shear Modulus (log G),Structure-based tasks,MAE,log$_{10}$ GPa,False,Fully joint,0.0926,0.0015
+log_gvrh,Shear Modulus (log G),Structure-based tasks,MAE,log$_{10}$ GPa,False,Pure MoE,0.1267,0.0014
+log_gvrh,Shear Modulus (log G),Structure-based tasks,MAE,log$_{10}$ GPa,False,Per-task gate,0.0568,0.0007
+log_gvrh,Shear Modulus (log G),Structure-based tasks,MAE,log$_{10}$ GPa,False,AG-MoE,0.0569,0.0007
+perovskites,Perovskite E_form,Structure-based tasks,MAE,eV/atom,False,No-sharing,0.0383,0.0012
+perovskites,Perovskite E_form,Structure-based tasks,MAE,eV/atom,False,Fully joint,0.0293,0.002
+perovskites,Perovskite E_form,Structure-based tasks,MAE,eV/atom,False,Pure MoE,0.0255,0.0018
+perovskites,Perovskite E_form,Structure-based tasks,MAE,eV/atom,False,Per-task gate,0.0245,0.0009
+perovskites,Perovskite E_form,Structure-based tasks,MAE,eV/atom,False,AG-MoE,0.0242,0.0009
+jdft2d,JDFT-2D E_form,Structure-based tasks,MAE,meV/atom,False,No-sharing,33.3379,11.2723
+jdft2d,JDFT-2D E_form,Structure-based tasks,MAE,meV/atom,False,Fully joint,33.1241,18.9487
+jdft2d,JDFT-2D E_form,Structure-based tasks,MAE,meV/atom,False,Pure MoE,30.6433,17.2261
+jdft2d,JDFT-2D E_form,Structure-based tasks,MAE,meV/atom,False,Per-task gate,33.4267,8.9232
+jdft2d,JDFT-2D E_form,Structure-based tasks,MAE,meV/atom,False,AG-MoE,30.2535,8.7447
+dielectric,Dielectric Const.,Structure-based tasks,MAE,,False,No-sharing,0.2912,0.0982
+dielectric,Dielectric Const.,Structure-based tasks,MAE,,False,Fully joint,0.2633,0.1651
+dielectric,Dielectric Const.,Structure-based tasks,MAE,,False,Pure MoE,0.2636,0.1501
+dielectric,Dielectric Const.,Structure-based tasks,MAE,,False,Per-task gate,0.2629,0.0778
+dielectric,Dielectric Const.,Structure-based tasks,MAE,,False,AG-MoE,0.2627,0.0762
+mp_is_metal,MP Metallicity,Structure-based tasks,AUC,,True,No-sharing,0.9619,0.0021
+mp_is_metal,MP Metallicity,Structure-based tasks,AUC,,True,Fully joint,0.9722,0.0035
+mp_is_metal,MP Metallicity,Structure-based tasks,AUC,,True,Pure MoE,0.9752,0.0032
+mp_is_metal,MP Metallicity,Structure-based tasks,AUC,,True,Per-task gate,0.9759,0.0016
+mp_is_metal,MP Metallicity,Structure-based tasks,AUC,,True,AG-MoE,0.9759,

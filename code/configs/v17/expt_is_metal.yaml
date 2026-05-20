@@ -1,0 +1,28 @@
+# matbench_expt_is_metal
+mode: composition
+data_file: v13_expt_is_metal.npz
+
+# ---------- 训练策略 ----------
+epochs: 1200
+batch_size: 128
+patience: 200
+
+# ---------- 优化 ----------
+lr: 0.0003
+weight_decay: 0.002
+loss: bce
+use_amp: true
+
+# ---------- 网络结构 ----------
+embed_dim: 512
+dropout: 0.15
+depth: 3
+
+comp_hidden_dims:
+  - 512
+  - 512
+  - 256
+
+# ---------- 特征开关 ----------
+use_magpie: true
+use_deep_encoder: true

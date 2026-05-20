@@ -1,0 +1,17 @@
+# Linux x86_64 + NVIDIA GPU
+# Python: 3.10 recommended
+#
+# 说明:
+# - NVIDIA Driver 仍然需要系统层预装。
+# - 这里使用 tensorflow[and-cuda]，让 pip 在虚拟环境内安装 TF 2.15 所需的 NVIDIA CUDA 依赖。
+# - 对 TensorFlow 2.15.0，官方 tested build configuration 是:
+#   CUDA 12.2 + cuDNN 8.9
+
+tensorflow[and-cuda]==2.15.0
+kgcnn==3.0.1
+matminer==0.9.3
+pymatgen==2025.10.7
+numpy==1.26.4
+pandas==2.3.3
+scikit-learn==1.7.2
+scipy==1.15.3

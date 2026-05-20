@@ -1,0 +1,35 @@
+{
+  "task": "matbench_log_kvrh",
+  "model": "coNGN",
+  "implementation": "kgcnn.literature.coGN.model_default_nested",
+  "split_protocol": "official_matbench_v0.1_folds",
+  "config": {
+    "epochs": 800,
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "patience": 100,
+    "warmup_epochs": 200,
+    "epoch_decay_rate": 0.9985,
+    "val_ratio": 0.1,
+    "random_state": 42
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "test_mae": 0.05394522100687027,
+      "best_epoch": 121,
+      "best_val_mae": 0.13666513562202454,
+      "n_train": 7910,
+      "n_val": 879,
+      "n_test": 2198,
+      "steps_per_epoch": 124,
+      "elapsed_min": 56.296133550008136
+    }
+  ],
+  "mean_mae": 0.05394522100687027,
+  "std_mae": 0.0,
+  "elapsed_min": 56.43831462065379,
+  "weights_dir": "cogn_weights/matbench_log_kvrh/kvrh_smoke_test",
+  "matbench_record": "cogn_weights/matbench_log_kvrh/kvrh_smoke_test/matbench_log_kvrh_matbench_record.json",
+  "run_log": "cogn_weights/matbench_log_kvrh/kvrh_smoke_test/run.log"
+}

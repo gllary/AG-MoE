@@ -1,0 +1,43 @@
+# configs/v17/steels_yield.yaml
+# Stage1 single-expert pretraining (v17)
+# Task: matbench_steels
+
+mode: composition
+data_file: v13_steels.npz
+
+# -------------------------
+# Training control
+# -------------------------
+epochs: 1500              # steels 收敛慢，必须拉长
+batch_size: 64            # steels 样本少，不要太大
+patience: 400
+
+# -------------------------
+# Optimizer
+# -------------------------
+lr: 0.00050               # ⭐ steels 最稳的学习率区间
+weight_decay: 0.001
+loss: huber               # ⭐ steels 必须用 huber（极端值多）
+
+# -------------------------
+# Model size
+# -------------------------
+embed_dim: 512             # 与结构专家、MoE 对齐
+dropout: 0.10              # steels 不需要太大 dropout
+depth: 4                   # 保留字段（兼容）
+
+# -------------------------
+# Composition encoder (v17)
+# -------------------------
+comp_hidden_dims:
+  - 512
+  - 512
+  - 256                     # ⭐ steels 用 3 层 MLP 明显更稳
+
+use_magpie: true            # 如果你 v17 composition encoder 支持
+use_deep_encoder: true      # 启用 v17 强化版 composition encoder
+
+# -------------------------
+# AMP
+# -------------------------
+use_amp: true

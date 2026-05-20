@@ -1,0 +1,37 @@
+# matbench_glass - v17 stage1 (composition)
+
+mode: composition
+data_file: v13_glass.npz
+
+# -------------------------
+# 训练策略
+# -------------------------
+epochs: 1500
+batch_size: 64          # ★ 小样本，不能太大
+patience: 400           # 允许充分收敛
+
+# -------------------------
+# 优化器
+# -------------------------
+lr: 0.0005              # glass 对 lr 不如 expt_gap 敏感
+weight_decay: 0.001
+loss: huber             # 对异常点更稳
+
+# -------------------------
+# 模型规模
+# -------------------------
+embed_dim: 512
+dropout: 0.20           # ★ 关键：比 expt_gap 再大一点
+
+depth: 4
+comp_hidden_dims:
+  - 512
+  - 512
+  - 256
+
+# -------------------------
+# v17 相关
+# -------------------------
+use_amp: true
+use_magpie: true
+use_deep_encoder: true

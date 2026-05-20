@@ -1,0 +1,24 @@
+[
+  {
+    "score": "fused_KG",
+    "metric": "PairwiseAcc(delta=0.0)",
+    "mean": 0.550687,
+    "ci_2p5": 0.471867,
+    "ci_97p5": 0.629507,
+    "random": 0.5
+  },
+  {
+    "score": "fused_KG",
+    "metric": "SpearmanR",
+    "mean": 0.046537,
+    "ci_2p5": -0.429676,
+    "ci_97p5": 0.502497
+  },
+  {
+    "score": "fused_KG",
+    "metric": "KendallTau",
+    "mean": 0.047483,
+    "ci_2p5": -0.290723,
+    "ci_97p5": 0.385689
+  }
+]

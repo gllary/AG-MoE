@@ -1,0 +1,1086 @@
+{
+  "task": "matbench_log_kvrh",
+  "model": "coNGN",
+  "implementation": "kgcnn.literature.coGN.model_default_nested",
+  "split_protocol": "official_matbench_v0.1_folds",
+  "config": {
+    "epochs": 800,
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "patience": 100,
+    "warmup_epochs": 200,
+    "epoch_decay_rate": 0.9985,
+    "val_ratio": 0.1,
+    "random_state": 42
+  },
+  "runtime": {
+    "python": "3.10.20 (main, Mar 11 2026, 17:46:40) [GCC 14.3.0]",
+    "platform": "Linux-5.15.0-139-generic-x86_64-with-glibc2.35",
+    "hostname": "ai",
+    "tensorflow": "2.15.0",
+    "cwd": "/home/tytadmin/gyx/model_agent_project/cogn_baseline",
+    "argv": [
+      "train_cogn_gvrh.py",
+      "--task",
+      "matbench_log_kvrh",
+      "--folds",
+      "0",
+      "--run-name",
+      "kvrh_smoke_test"
+    ]
+  },
+  "tensorflow_runtime": {
+    "physical_gpus": [
+      "/physical_device:GPU:0"
+    ],
+    "memory_growth": [
+      {
+        "name": "/physical_device:GPU:0",
+        "memory_growth": true
+      }
+    ]
+  },
+  "selected_folds": [
+    0
+  ],
+  "cache_dir": "/home/tytadmin/gyx/model_agent_project/cogn_baseline/cogn_cache/matbench_log_kvrh",
+  "output_dir": "/home/tytadmin/gyx/model_agent_project/cogn_baseline/cogn_weights/matbench_log_kvrh/kvrh_smoke_test",
+  "paper_known_reproduced": {
+    "official_matbench_outer_folds": true,
+    "nested_line_graph_model": true,
+    "asymmetric_unit_voronoi_graph": true,
+    "epochs": 800,
+    "batch_size": 64
+  },
+  "explicit_assumptions": [
+    "论文与公开实现未给出 Matbench 开发集内部验证划分，因此这里固定采用 train+val fold 内 10% 随机划分做 early stopping。",
+    "论文未在正文中逐项公开所有优化器细节，这里对齐作者公开 kgcnn 实现，并使用 step-based warmup + exponential decay。"
+  ],
+  "model_kwargs": {
+    "inputs": {
+      "offset": {
+        "shape": [
+          null,
+          3
+        ],
+        "name": "offset",
+        "dtype": "float32",
+        "ragged": true
+      },
+      "cell_translation": null,
+      "affine_matrix": null,
+      "voronoi_ridge_area": {
+        "shape": [
+          null
+        ],
+        "name": "voronoi_ridge_area",
+        "dtype": "float32",
+        "ragged": true
+      },
+      "atomic_number": {
+        "shape": [
+          null
+        ],
+        "name": "atomic_number",
+        "dtype": "int32",
+        "ragged": true
+      },
+      "frac_coords": null,
+      "coords": null,
+      "multiplicity": {
+        "shape": [
+          null
+        ],
+        "name": "multiplicity",
+        "dtype": "int32",
+        "ragged": true
+      },
+      "lattice_matrix": null,
+      "line_graph_edge_indices": {
+        "shape": [
+          null,
+          2
+        ],
+        "name": "line_graph_edge_indices",
+        "dtype": "int32",
+        "ragged": true
+      },
+      "edge_indices": {
+        "shape": [
+          null,
+          2
+        ],
+        "name": "edge_indices",
+        "dtype": "int32",
+        "ragged": true
+      }
+    },
+    "input_block_cfg": {
+      "node_size": 160,
+      "edge_size": 160,
+      "atomic_mass": true,
+      "atomic_radius": true,
+      "electronegativity": true,
+      "ionization_energy": true,
+      "oxidation_states": true,
+      "edge_embedding_args": {
+        "bins_distance": 32,
+        "max_distance": 8.0,
+        "distance_log_base": 1.0,
+        "bins_voronoi_area": 32,
+        "max_voronoi_area": 30.0
+      }
+    },
+    "processing_blocks_cfg": [
+      {
+        "edge_mlp": {
+          "units": [
+            160,
+            160,
+            160,
+            160
+          ],
+          "activation": [
+            "swish",
+            "swish",
+            "swish",
+            "swish"
+          ]
+        },
+        "node_mlp": {
+          "units": [
+            160,
+            160,
+            160,
+            160
+          ],
+          "activation": [
+            "swish",
+            "swish",
+            "swish",
+            "swish"
+          ]
+        },
+        "global_mlp": null,
+        "nested_blocks_cfgs": [
+          {
+            "edge_mlp": {
+              "units": [
+                160,
+                160
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "node_mlp": {
+              "units": [
+                160,
+                160
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "global_mlp": null,
+            "nested_blocks_cfgs": null,
+            "aggregate_edges_local": "sum",
+            "aggregate_edges_global": null,
+            "aggregate_nodes": null,
+            "return_updated_edges": false,
+            "return_updated_nodes": true,
+            "return_updated_globals": true,
+            "edge_attention_mlp_local": {
+              "units": [
+                32,
+                1
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "edge_attention_mlp_global": {
+              "units": [
+                32,
+                1
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "node_attention_mlp": {
+              "units": [
+                32,
+                1
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "edge_gate": null,
+            "node_gate": "gru",
+            "global_gate": null,
+            "residual_node_update": false,
+            "residual_edge_update": false,
+            "residual_global_update": false,
+            "update_edges_input": [
+              true,
+              true,
+              true,
+              false
+            ],
+            "update_nodes_input": [
+              true,
+              false,
+              false
+            ],
+            "update_global_input": [
+              false,
+              true,
+              false
+            ],
+            "multiplicity_readout": false
+          }
+        ],
+        "aggregate_edges_local": "sum",
+        "aggregate_edges_global": null,
+        "aggregate_nodes": null,
+        "return_updated_edges": false,
+        "return_updated_nodes": true,
+        "return_updated_globals": true,
+        "edge_attention_mlp_local": {
+          "units": [
+            32,
+            1
+          ],
+          "activation": [
+            "swish",
+            "swish"
+          ]
+        },
+        "edge_attention_mlp_global": {
+          "units": [
+            32,
+            1
+          ],
+          "activation": [
+            "swish",
+            "swish"
+          ]
+        },
+        "node_attention_mlp": {
+          "units": [
+            32,
+            1
+          ],
+          "activation": [
+            "swish",
+            "swish"
+          ]
+        },
+        "edge_gate": null,
+        "node_gate": null,
+        "global_gate": null,
+        "residual_node_update": true,
+        "residual_edge_update": false,
+        "residual_global_update": false,
+        "update_edges_input": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "update_nodes_input": [
+          true,
+          false,
+          false
+        ],
+        "update_global_input": [
+          false,
+          true,
+          false
+        ],
+        "multiplicity_readout": false
+      },
+      {
+        "edge_mlp": {
+          "units": [
+            160,
+            160,
+            160,
+            160
+          ],
+          "activation": [
+            "swish",
+            "swish",
+            "swish",
+            "swish"
+          ]
+        },
+        "node_mlp": {
+          "units": [
+            160,
+            160,
+            160,
+            160
+          ],
+          "activation": [
+            "swish",
+            "swish",
+            "swish",
+            "swish"
+          ]
+        },
+        "global_mlp": null,
+        "nested_blocks_cfgs": [
+          {
+            "edge_mlp": {
+              "units": [
+                160,
+                160
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "node_mlp": {
+              "units": [
+                160,
+                160
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "global_mlp": null,
+            "nested_blocks_cfgs": null,
+            "aggregate_edges_local": "sum",
+            "aggregate_edges_global": null,
+            "aggregate_nodes": null,
+            "return_updated_edges": false,
+            "return_updated_nodes": true,
+            "return_updated_globals": true,
+            "edge_attention_mlp_local": {
+              "units": [
+                32,
+                1
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "edge_attention_mlp_global": {
+              "units": [
+                32,
+                1
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "node_attention_mlp": {
+              "units": [
+                32,
+                1
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "edge_gate": null,
+            "node_gate": "gru",
+            "global_gate": null,
+            "residual_node_update": false,
+            "residual_edge_update": false,
+            "residual_global_update": false,
+            "update_edges_input": [
+              true,
+              true,
+              true,
+              false
+            ],
+            "update_nodes_input": [
+              true,
+              false,
+              false
+            ],
+            "update_global_input": [
+              false,
+              true,
+              false
+            ],
+            "multiplicity_readout": false
+          }
+        ],
+        "aggregate_edges_local": "sum",
+        "aggregate_edges_global": null,
+        "aggregate_nodes": null,
+        "return_updated_edges": false,
+        "return_updated_nodes": true,
+        "return_updated_globals": true,
+        "edge_attention_mlp_local": {
+          "units": [
+            32,
+            1
+          ],
+          "activation": [
+            "swish",
+            "swish"
+          ]
+        },
+        "edge_attention_mlp_global": {
+          "units": [
+            32,
+            1
+          ],
+          "activation": [
+            "swish",
+            "swish"
+          ]
+        },
+        "node_attention_mlp": {
+          "units": [
+            32,
+            1
+          ],
+          "activation": [
+            "swish",
+            "swish"
+          ]
+        },
+        "edge_gate": null,
+        "node_gate": null,
+        "global_gate": null,
+        "residual_node_update": true,
+        "residual_edge_update": false,
+        "residual_global_update": false,
+        "update_edges_input": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "update_nodes_input": [
+          true,
+          false,
+          false
+        ],
+        "update_global_input": [
+          false,
+          true,
+          false
+        ],
+        "multiplicity_readout": false
+      },
+      {
+        "edge_mlp": {
+          "units": [
+            160,
+            160,
+            160,
+            160
+          ],
+          "activation": [
+            "swish",
+            "swish",
+            "swish",
+            "swish"
+          ]
+        },
+        "node_mlp": {
+          "units": [
+            160,
+            160,
+            160,
+            160
+          ],
+          "activation": [
+            "swish",
+            "swish",
+            "swish",
+            "swish"
+          ]
+        },
+        "global_mlp": null,
+        "nested_blocks_cfgs": [
+          {
+            "edge_mlp": {
+              "units": [
+                160,
+                160
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "node_mlp": {
+              "units": [
+                160,
+                160
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "global_mlp": null,
+            "nested_blocks_cfgs": null,
+            "aggregate_edges_local": "sum",
+            "aggregate_edges_global": null,
+            "aggregate_nodes": null,
+            "return_updated_edges": false,
+            "return_updated_nodes": true,
+            "return_updated_globals": true,
+            "edge_attention_mlp_local": {
+              "units": [
+                32,
+                1
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "edge_attention_mlp_global": {
+              "units": [
+                32,
+                1
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "node_attention_mlp": {
+              "units": [
+                32,
+                1
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "edge_gate": null,
+            "node_gate": "gru",
+            "global_gate": null,
+            "residual_node_update": false,
+            "residual_edge_update": false,
+            "residual_global_update": false,
+            "update_edges_input": [
+              true,
+              true,
+              true,
+              false
+            ],
+            "update_nodes_input": [
+              true,
+              false,
+              false
+            ],
+            "update_global_input": [
+              false,
+              true,
+              false
+            ],
+            "multiplicity_readout": false
+          }
+        ],
+        "aggregate_edges_local": "sum",
+        "aggregate_edges_global": null,
+        "aggregate_nodes": null,
+        "return_updated_edges": false,
+        "return_updated_nodes": true,
+        "return_updated_globals": true,
+        "edge_attention_mlp_local": {
+          "units": [
+            32,
+            1
+          ],
+          "activation": [
+            "swish",
+            "swish"
+          ]
+        },
+        "edge_attention_mlp_global": {
+          "units": [
+            32,
+            1
+          ],
+          "activation": [
+            "swish",
+            "swish"
+          ]
+        },
+        "node_attention_mlp": {
+          "units": [
+            32,
+            1
+          ],
+          "activation": [
+            "swish",
+            "swish"
+          ]
+        },
+        "edge_gate": null,
+        "node_gate": null,
+        "global_gate": null,
+        "residual_node_update": true,
+        "residual_edge_update": false,
+        "residual_global_update": false,
+        "update_edges_input": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "update_nodes_input": [
+          true,
+          false,
+          false
+        ],
+        "update_global_input": [
+          false,
+          true,
+          false
+        ],
+        "multiplicity_readout": false
+      },
+      {
+        "edge_mlp": {
+          "units": [
+            160,
+            160,
+            160,
+            160
+          ],
+          "activation": [
+            "swish",
+            "swish",
+            "swish",
+            "swish"
+          ]
+        },
+        "node_mlp": {
+          "units": [
+            160,
+            160,
+            160,
+            160
+          ],
+          "activation": [
+            "swish",
+            "swish",
+            "swish",
+            "swish"
+          ]
+        },
+        "global_mlp": null,
+        "nested_blocks_cfgs": [
+          {
+            "edge_mlp": {
+              "units": [
+                160,
+                160
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "node_mlp": {
+              "units": [
+                160,
+                160
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "global_mlp": null,
+            "nested_blocks_cfgs": null,
+            "aggregate_edges_local": "sum",
+            "aggregate_edges_global": null,
+            "aggregate_nodes": null,
+            "return_updated_edges": false,
+            "return_updated_nodes": true,
+            "return_updated_globals": true,
+            "edge_attention_mlp_local": {
+              "units": [
+                32,
+                1
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "edge_attention_mlp_global": {
+              "units": [
+                32,
+                1
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "node_attention_mlp": {
+              "units": [
+                32,
+                1
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "edge_gate": null,
+            "node_gate": "gru",
+            "global_gate": null,
+            "residual_node_update": false,
+            "residual_edge_update": false,
+            "residual_global_update": false,
+            "update_edges_input": [
+              true,
+              true,
+              true,
+              false
+            ],
+            "update_nodes_input": [
+              true,
+              false,
+              false
+            ],
+            "update_global_input": [
+              false,
+              true,
+              false
+            ],
+            "multiplicity_readout": false
+          }
+        ],
+        "aggregate_edges_local": "sum",
+        "aggregate_edges_global": null,
+        "aggregate_nodes": null,
+        "return_updated_edges": false,
+        "return_updated_nodes": true,
+        "return_updated_globals": true,
+        "edge_attention_mlp_local": {
+          "units": [
+            32,
+            1
+          ],
+          "activation": [
+            "swish",
+            "swish"
+          ]
+        },
+        "edge_attention_mlp_global": {
+          "units": [
+            32,
+            1
+          ],
+          "activation": [
+            "swish",
+            "swish"
+          ]
+        },
+        "node_attention_mlp": {
+          "units": [
+            32,
+            1
+          ],
+          "activation": [
+            "swish",
+            "swish"
+          ]
+        },
+        "edge_gate": null,
+        "node_gate": null,
+        "global_gate": null,
+        "residual_node_update": true,
+        "residual_edge_update": false,
+        "residual_global_update": false,
+        "update_edges_input": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "update_nodes_input": [
+          true,
+          false,
+          false
+        ],
+        "update_global_input": [
+          false,
+          true,
+          false
+        ],
+        "multiplicity_readout": false
+      },
+      {
+        "edge_mlp": {
+          "units": [
+            160,
+            160,
+            160,
+            160
+          ],
+          "activation": [
+            "swish",
+            "swish",
+            "swish",
+            "swish"
+          ]
+        },
+        "node_mlp": {
+          "units": [
+            160,
+            160,
+            160,
+            160
+          ],
+          "activation": [
+            "swish",
+            "swish",
+            "swish",
+            "swish"
+          ]
+        },
+        "global_mlp": null,
+        "nested_blocks_cfgs": [
+          {
+            "edge_mlp": {
+              "units": [
+                160,
+                160
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "node_mlp": {
+              "units": [
+                160,
+                160
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "global_mlp": null,
+            "nested_blocks_cfgs": null,
+            "aggregate_edges_local": "sum",
+            "aggregate_edges_global": null,
+            "aggregate_nodes": null,
+            "return_updated_edges": false,
+            "return_updated_nodes": true,
+            "return_updated_globals": true,
+            "edge_attention_mlp_local": {
+              "units": [
+                32,
+                1
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "edge_attention_mlp_global": {
+              "units": [
+                32,
+                1
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "node_attention_mlp": {
+              "units": [
+                32,
+                1
+              ],
+              "activation": [
+                "swish",
+                "swish"
+              ]
+            },
+            "edge_gate": null,
+            "node_gate": "gru",
+            "global_gate": null,
+            "residual_node_update": false,
+            "residual_edge_update": false,
+            "residual_global_update": false,
+            "update_edges_input": [
+              true,
+              true,
+              true,
+              false
+            ],
+            "update_nodes_input": [
+              true,
+              false,
+              false
+            ],
+            "update_global_input": [
+              false,
+              true,
+              false
+            ],
+            "multiplicity_readout": false
+          }
+        ],
+        "aggregate_edges_local": "sum",
+        "aggregate_edges_global": null,
+        "aggregate_nodes": null,
+        "return_updated_edges": false,
+        "return_updated_nodes": true,
+        "return_updated_globals": true,
+        "edge_attention_mlp_local": {
+          "units": [
+            32,
+            1
+          ],
+          "activation": [
+            "swish",
+            "swish"
+          ]
+        },
+        "edge_attention_mlp_global": {
+          "units": [
+            32,
+            1
+          ],
+          "activation": [
+            "swish",
+            "swish"
+          ]
+        },
+        "node_attention_mlp": {
+          "units": [
+            32,
+            1
+          ],
+          "activation": [
+            "swish",
+            "swish"
+          ]
+        },
+        "edge_gate": null,
+        "node_gate": null,
+        "global_gate": null,
+        "residual_node_update": true,
+        "residual_edge_update": false,
+        "residual_global_update": false,
+        "update_edges_input": [
+          true,
+          true,
+          true,
+          false
+        ],
+        "update_nodes_input": [
+          true,
+          false,
+          false
+        ],
+        "update_global_input": [
+          false,
+          true,
+          false
+        ],
+        "multiplicity_readout": false
+      }
+    ],
+    "output_block_cfg": {
+      "edge_mlp": null,
+      "node_mlp": null,
+      "global_mlp": {
+        "units": [
+          160,
+          1
+        ],
+        "activation": [
+          "swish",
+          "linear"
+        ]
+      },
+      "nested_blocks_cfgs": null,
+      "aggregate_edges_local": "sum",
+      "aggregate_edges_global": null,
+      "aggregate_nodes": "mean",
+      "return_updated_edges": false,
+      "return_updated_nodes": true,
+      "return_updated_globals": true,
+      "edge_attention_mlp_local": {
+        "units": [
+          32,
+          1
+        ],
+        "activation": [
+          "swish",
+          "swish"
+        ]
+      },
+      "edge_attention_mlp_global": {
+        "units": [
+          32,
+          1
+        ],
+        "activation": [
+          "swish",
+          "swish"
+        ]
+      },
+      "node_attention_mlp": {
+        "units": [
+          32,
+          1
+        ],
+        "activation": [
+          "swish",
+          "swish"
+        ]
+      },
+      "edge_gate": null,
+      "node_gate": null,
+      "global_gate": null,
+      "residual_node_update": false,
+      "residual_edge_update": false,
+      "residual_global_update": false,
+      "update_edges_input": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "update_nodes_input": [
+        true,
+        false,
+        false
+      ],
+      "update_global_input": [
+        false,
+        true,
+        false
+      ],
+      "multiplicity_readout": true
+    }
+  }
+}

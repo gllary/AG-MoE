@@ -1,0 +1,16 @@
+mode: structure
+epochs: 1200          # dielectric 不需要太长，但仍建议 ≥ 800
+batch_size: 8
+dropout: 0.10
+lr: 0.00012
+weight_decay: 0.002
+loss: huber
+patience: 200
+embed_dim: 512
+
+struct_config:
+  conv_layers: 3
+  graphormer_layers: 3      # dielectric 在 3~4 层性能最佳
+  node_dim: 144             # 128 → 144 提升显著，160 会变慢但提升不大
+  num_heads: 6              # 6 是材料任务经验最优（性能 > 4头 & 8头 稳定）
+  ff_hidden: 384            # 256 稍弱，512 训练变慢 → 384 是黄金折中

@@ -1,0 +1,29 @@
+# matbench_perovskites - v17 Stage1 (structure)
+# 目标：利用全局周期结构 + 局部配位的混合建模优势
+
+mode: structure
+data_file: matbench_perovskites.pt
+
+# ---------- 训练策略 ----------
+epochs: 800
+batch_size: 8           # perovskites 单晶体规模适中，可略大
+patience: 200
+
+lr: 0.00012             # 比 phonons 稍大
+weight_decay: 0.001
+loss: huber
+dropout: 0.1
+use_amp: true
+
+embed_dim: 512
+
+# ---------- 结构专家配置（v17） ----------
+struct_config:
+  conv_layers: 3        # 保留足够局部建模能力
+  graphormer_layers: 2  # perovskites 不需要太深 attention
+  node_dim: 128
+  num_heads: 4
+  ff_hidden: 256
+
+# 兼容字段（不实际使用，但保留以防旧代码）
+depth: 2

@@ -1,0 +1,29 @@
+# matbench_log_kvrh - v17 Stage1 (structure)
+# 目标：逼近 SOTA (~0.049) + 控制训练时间
+
+mode: structure
+data_file: matbench_log_kvrh.pt
+
+# ---------- 训练策略 ----------
+epochs: 800
+batch_size: 6          # log_kvrh 规模中等，可比 mp_gap 稍大
+patience: 200
+
+lr: 0.00012
+weight_decay: 0.0015
+loss: huber            # 对异常结构更稳
+dropout: 0.1
+use_amp: true
+
+embed_dim: 512
+
+# ---------- 结构专家配置（v17 核心） ----------
+struct_config:
+  conv_layers: 3        # CGCNN 是主力
+  graphormer_layers: 2  # log_kvrh 对全局依赖适中，2 层性价比最好
+  node_dim: 128
+  num_heads: 4
+  ff_hidden: 256
+
+# 兼容旧字段（不再关键，但保留）
+depth: 2

@@ -1,0 +1,29 @@
+# matbench_mp_is_metal - v17 Stage1 (structure, binary classification)
+# 目标：稳定提升 AUC / ACC，不牺牲训练速度
+
+mode: structure
+data_file: matbench_mp_is_metal.pt
+
+# ---------- 训练策略 ----------
+epochs: 600
+batch_size: 8          # mp_is_metal 图规模中等，可用 8
+patience: 150
+
+lr: 0.00015            # 分类任务可略高 LR
+weight_decay: 0.001
+loss: bce              # 二分类
+dropout: 0.1
+use_amp: true
+
+embed_dim: 512
+
+# ---------- 结构专家配置（v17） ----------
+struct_config:
+  conv_layers: 3       # 局部化学环境很重要
+  graphormer_layers: 2 # 不宜太深，防止 attention 过拟合
+  node_dim: 128
+  num_heads: 4
+  ff_hidden: 256
+
+# 兼容字段（保留，不影响）
+depth: 2

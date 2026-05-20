@@ -1,0 +1,29 @@
+# matbench_log_gvrh - v17 Stage1 (structure)
+# 剪切模量，对局部+中程结构更敏感
+
+mode: structure
+data_file: matbench_log_gvrh.pt
+
+# ---------- 训练策略 ----------
+epochs: 800
+batch_size: 6          # 与 log_kvrh 对齐，便于对照
+patience: 200
+
+lr: 0.00010            # 比 kvrh 略小，更稳
+weight_decay: 0.0015
+loss: huber
+dropout: 0.1
+use_amp: true
+
+embed_dim: 512
+
+# ---------- 结构专家配置（v17） ----------
+struct_config:
+  conv_layers: 3        # CGCNN 主导
+  graphormer_layers: 2  # 中程依赖即可
+  node_dim: 128
+  num_heads: 4
+  ff_hidden: 256
+
+# 兼容字段
+depth: 2

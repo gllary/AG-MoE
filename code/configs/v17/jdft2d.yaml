@@ -1,0 +1,28 @@
+# configs/v17/matbench_jdft2d.yaml
+mode: structure
+data_file: matbench_jdft2d.pt
+
+# -------- 训练控制 --------
+epochs: 1500
+batch_size: 1          # 🔴 极重要：小数据集必须单图训练
+patience: 400
+
+# -------- 优化器 --------
+lr: 8.0e-5             # ⬇️ 降低学习率，提升稳定性
+weight_decay: 0.006    # ⬆️ 强正则，防止过拟合
+loss: huber            # 对 jdft2d 非常友好
+
+# -------- 模型维度 --------
+embed_dim: 512
+dropout: 0.15
+
+# -------- 结构专家配置 --------
+struct_config:
+  conv_layers: 2        # ⬇️ 少一层，减少噪声放大
+  graphormer_layers: 1  # 🔴 jdft2d 不适合深 attention
+  node_dim: 128
+  num_heads: 4
+  ff_hidden: 256
+
+# -------- AMP 控制 --------
+use_amp: false          # 🔴 强烈建议关闭 AMP（jdft2d 特例）

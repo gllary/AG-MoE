@@ -1,0 +1,137 @@
+# v20 Stage2 MoE (experts frozen)
+
+
+moe_dim: 512
+epochs: 1500
+lr: 0.0002
+weight_decay: 0.001
+
+router_hidden: 256
+router_dropout: 0.1
+top_k: 2
+
+use_amp: true
+
+steps_per_epoch: 50
+save_every: 50
+ckpt_dir: mat_models/checkpoints/v25_stage2_moe
+
+tasks:
+  # ================= composition =================
+  steels_yield:
+    mode: composition
+    task_type: reg
+    data_file: v13_steels.npz
+    batch_size: 64
+    expert_dim: 512
+    ckpt_path: mat_models/checkpoints/v17_stage1_steels_yield_1225/steels_yield/steels_yield_fold0.pt
+    stage1_cfg: configs/v17/steels_yield.yaml
+
+  expt_gap:
+    mode: composition
+    task_type: reg
+    data_file: v13_expt_gap.npz
+    batch_size: 128
+    expert_dim: 512
+    ckpt_path: mat_models/checkpoints/v17_stage1_expt_gap/expt_gap/expt_gap_fold0.pt
+    stage1_cfg: configs/v17/matbench_expt_gap.yaml
+
+  glass:
+    mode: composition
+    task_type: cls
+    data_file: v13_glass.npz
+    batch_size: 64
+    expert_dim: 512
+    ckpt_path: mat_models/checkpoints/v17_stage1_glass/glass/glass_fold0.pt
+    stage1_cfg: configs/v17/glass.yaml
+
+  expt_is_metal:
+    mode: composition
+    task_type: cls
+    data_file: v13_expt_is_metal.npz
+    batch_size: 128
+    expert_dim: 512
+    ckpt_path: mat_models/checkpoints/v17_stage1_expt_is_metal/expt_is_metal/expt_is_metal_fold0.pt
+    stage1_cfg: configs/v17/expt_is_metal.yaml
+
+  # ================= structure =================
+  jdft2d:
+    mode: structure
+    task_type: reg
+    data_file: matbench_jdft2d.pt
+    batch_size: 8
+    expert_dim: 512
+    ckpt_path: mat_models/checkpoints/v17_stage1_jdft2d/jdft2d/jdft2d_fold0.pt
+    stage1_cfg: configs/v17/jdft2d.yaml
+
+  dielectric:
+    mode: structure
+    task_type: reg
+    data_file: matbench_dielectric.pt
+    batch_size: 8
+    expert_dim: 512
+    ckpt_path: mat_models/checkpoints/v17_stage1_dielectric/dielectric/dielectric_fold0.pt
+    stage1_cfg: configs/v17/dielectric.yaml
+
+  log_kvrh:
+    mode: structure
+    task_type: reg
+    data_file: matbench_log_kvrh.pt
+    batch_size: 4
+    expert_dim: 512
+    ckpt_path: mat_models/checkpoints/v17_stage1_log_kvrh/log_kvrh/log_kvrh_fold0.pt
+    stage1_cfg: configs/v17/log_kvrh.yaml
+
+  log_gvrh:
+    mode: structure
+    task_type: reg
+    data_file: matbench_log_gvrh.pt
+    batch_size: 4
+    expert_dim: 512
+    ckpt_path: mat_models/checkpoints/v17_stage1_log_gvrh/log_gvrh/log_gvrh_fold0.pt
+    stage1_cfg: configs/v17/log_gvrh.yaml
+
+  perovskites:
+    mode: structure
+    task_type: reg
+    data_file: matbench_perovskites.pt
+    batch_size: 8
+    expert_dim: 512
+    ckpt_path: mat_models/checkpoints/v17_stage1_perovskites/perovskites/perovskites_fold0.pt
+    stage1_cfg: configs/v17/perovskites.yaml
+
+  phonons:
+    mode: structure
+    task_type: reg
+    data_file: matbench_phonons.pt
+    batch_size: 8
+    expert_dim: 512
+    ckpt_path: mat_models/checkpoints/v17_stage1_phonons/phonons/phonons_fold0.pt
+    stage1_cfg: configs/v17/phonons.yaml
+
+  mp_gap:
+    mode: structure
+    task_type: reg
+    data_file: matbench_mp_gap.pt
+    batch_size: 8
+    expert_dim: 512
+    ckpt_path: mat_models/checkpoints/v17_stage1_mp_gap/mp_gap/mp_gap_fold0.pt
+    stage1_cfg: configs/v17/mp_gap.yaml
+
+  mp_is_metal:
+    mode: structure
+    task_type: cls
+    data_file: matbench_mp_is_metal.pt
+    batch_size: 8
+    expert_dim: 512
+    ckpt_path: mat_models/checkpoints/v17_stage1_mp_is_metal/mp_is_metal/mp_is_metal_fold0.pt
+    stage1_cfg: configs/v17/mp_is_metal.yaml
+
+  mp_e_form:
+    mode: structure
+    task_type: reg
+    data_file: matbench_mp_e_form.pt
+    batch_size: 8
+    expert_dim: 256          # ⭐ Stage1 专家 embed_dim=256
+    ckpt_path: mat_models/checkpoints/v17_stage1_mp_e_form/mp_e_form/mp_e_form_fold0.pt
+    stage1_cfg: configs/v17/mp_e_form.yaml

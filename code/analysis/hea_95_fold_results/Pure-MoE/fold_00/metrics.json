@@ -1,0 +1,56 @@
+[
+  {
+    "score": "fused_KG",
+    "metric": "Precision@6",
+    "mean": 0.334838,
+    "ci_2p5": 0.0,
+    "ci_97p5": 0.8333,
+    "random": 0.06315789
+  },
+  {
+    "score": "fused_KG",
+    "metric": "Precision@9",
+    "mean": 0.324114,
+    "ci_2p5": 0.0,
+    "ci_97p5": 0.6667,
+    "random": 0.09473684
+  },
+  {
+    "score": "fused_KG",
+    "metric": "PairwiseAcc(delta=0.0)",
+    "mean": 0.718264,
+    "ci_2p5": 0.705069,
+    "ci_97p5": 0.731459,
+    "random": 0.5
+  },
+  {
+    "score": "fused_KG",
+    "metric": "PairwiseAcc(delta=0.05)",
+    "mean": 0.76462,
+    "ci_2p5": 0.752176,
+    "ci_97p5": 0.777064,
+    "random": 0.5
+  },
+  {
+    "score": "fused_KG",
+    "metric": "PairwiseAcc(delta=0.08)",
+    "mean": 0.78384,
+    "ci_2p5": 0.771766,
+    "ci_97p5": 0.795914,
+    "random": 0.5
+  },
+  {
+    "score": "fused_KG",
+    "metric": "SpearmanR",
+    "mean": 0.661101,
+    "ci_2p5": 0.5302,
+    "ci_97p5": 0.761221
+  },
+  {
+    "score": "fused_KG",
+    "metric": "KendallTau",
+    "mean": 0.430879,
+    "ci_2p5": 0.294345,
+    "ci_97p5": 0.567413
+  }
+]

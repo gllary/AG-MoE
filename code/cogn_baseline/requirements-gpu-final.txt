@@ -1,0 +1,24 @@
+# GPU-capable Linux environment validated against the current local working setup.
+# Python: 3.10
+#
+# Install with:
+#   pip install -r requirements-gpu-final.txt
+#   pip install --no-deps "matbench==0.6"
+#
+# Why matbench is separate:
+#   matbench==0.6 ships outdated dependency metadata that conflicts with the
+#   actually working modern scipy/matminer stack, so it must be installed with --no-deps.
+#
+# Why not tensorflow[and-cuda]:
+#   on some Linux mirrors/environments, TensorFlow 2.15's optional TensorRT wheels
+#   are unavailable, causing resolution to fail. This file therefore uses the plain
+#   tensorflow wheel and assumes CUDA/cuDNN are provided by the system environment.
+
+tensorflow==2.15.0
+kgcnn==3.0.1
+matminer==0.9.3
+pymatgen==2025.10.7
+numpy==1.26.4
+pandas==2.3.3
+scikit-learn==1.7.2
+scipy==1.15.3
