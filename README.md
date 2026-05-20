@@ -46,12 +46,22 @@ AG-MoE/
 If you find this work useful, please cite the paper:
 
 ```bibtex
-@article{guan2025agmoe,
+@article{guan2026agmoe,
   title   = {Learning when to share: disentangling representation formation and adaptive sharing for diverse materials property prediction},
   author  = {Guan, Yuxia and Zhao, Weijiang and Zou, Hao and Chi, Guangfang and Liu, Yong and Wang, Jianxin},
-  year    = {2025}
+  year    = {2026},
+  note    = {Manuscript under review}
 }
 ```
+
+## License
+
+This repository uses **two licenses** to cover code and data separately:
+
+- **Source code** (everything under `code/` and `results/`, plus all scripts at the repository root) is released under the **MIT License**. See [`LICENSE`](LICENSE).
+- **Curated datasets** (everything under `transfer data/`, including the 95-alloy HEA cohort and the 18-alloy B2 MPEI cohort generated in this work) are released under the **Creative Commons Attribution 4.0 International License (CC BY 4.0)**. See [`transfer data/LICENSE`](transfer%20data/LICENSE). When you use these datasets, please credit the manuscript above.
+
+The Matbench benchmark datasets are not redistributed in this repository and remain available under their original license at <https://matbench.materialsproject.org/>.
 
 ## Contact
 
